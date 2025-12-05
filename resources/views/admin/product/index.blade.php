@@ -43,8 +43,11 @@
                                 </td>
                             </tr>
                         @endforeach
-                    </tbody>
+                    </tbody> 
                 </x-table>
+                <div class="d-flex justify-content-center mt-3">
+                        {{ $products->links('pagination::bootstrap-5') }}
+                </div>
             </x-card>
         </div>
     </x-container>

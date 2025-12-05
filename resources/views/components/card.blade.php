@@ -1,8 +1,12 @@
-<div class="card rounded-lg border border-0">
-    <div class="card-header">
-        <h3 class="card-title">{{ $title }}</h3>
-    </div>
-    <div {{ $attributes->merge(['class' => '']) }}>
+@props(['title' => '', 'class' => ''])
+
+<div class="card {{ $class }}">
+    @if($title)
+        <div class="card-header">
+            <h5 class="card-title mb-0">{{ $title }}</h5>
+        </div>
+    @endif
+    <div class="card-body">
         {{ $slot }}
     </div>
 </div>

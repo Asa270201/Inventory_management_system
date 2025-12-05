@@ -31,6 +31,8 @@
     <link href="{{ asset('dist/libs/selectize/dist/css/selectize.css') }}" rel="stylesheet" />
 
 
+
+
     @stack('css')
 </head>
 
@@ -43,7 +45,7 @@
         <div class="content">
             <!-- Content -->
             @yield('content')
-
+            
             <!-- Footer -->
             @include('layouts._footer')
 

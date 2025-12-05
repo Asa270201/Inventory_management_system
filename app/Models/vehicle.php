@@ -15,6 +15,17 @@ class Vehicle extends Model
 
     protected $guarded = [];
 
+    protected $fillable = [
+        'name',
+        'image',
+        'type',
+        'merk',
+        'license_plat',
+        'condition',
+        'status',
+    ];
+
+
     protected $casts = [
         'status' => VehicleStatus::class
     ];

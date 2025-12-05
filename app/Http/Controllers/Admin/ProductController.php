@@ -52,12 +52,14 @@ class ProductController extends Controller
         $image = $this->uploadImage($request, $path = 'public/products/', $name = 'image');
 
         Product::create([
-            'category_id' => $request->category_id,
-            'supplier_id' => $request->supplier_id,
             'name' => $request->name,
-            'image' => $image->hashName(),
             'unit' => $request->unit,
+            'supplier_id' => $request->supplier_id,
+            'category_id' => $request->category_id,
             'description' => $request->description,
+            'purchase_price' => $request->purchase_price,
+            'selling_price' => $request->selling_price,
+            'image' => $image->hashName(),
         ]);
 
         return redirect((route('admin.product.index')))->with('toast_success', 'Kategori Berhasil Ditambahkan');
@@ -95,6 +97,8 @@ class ProductController extends Controller
             'name' => $request->name,
             'unit' => $request->unit,
             'description' => $request->description,
+            'purchase_price' => $request->purchase_price,
+            'selling_price' => $request->selling_price,
         ]);
 
         if($request->file($name)){

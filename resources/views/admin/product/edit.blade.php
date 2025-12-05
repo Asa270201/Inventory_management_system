@@ -38,6 +38,16 @@
                                 <x-input name="unit" type="text" title="Satuan Produk" placeholder="Satuan Produk"
                                     :value="$product->unit" />
                             </div>
+                            {{-- Harga Beli --}}
+                            <div class="form-group mb-3">
+                                <label for="purchase_price">Harga Beli</label>
+                                <input type="number" name="purchase_price" class="form-control" value="{{ old('purchase_price', $product->purchase_price) }}" step="0.01" required>
+                            </div>
+                            {{-- Harga Jual --}}
+                            <div class="form-group mb-3">
+                                <label for="selling_price">Harga Jual</label>
+                                <input type="number" name="selling_price" class="form-control" value="{{ old('selling_price', $product->selling_price) }}" step="0.01" required>
+                            </div>
                         </div>
                         <x-textarea name="description" title="Deskripsi Produk" placeholder="Deskripsi Produk">
                             {{ $product->description }}</x-textarea>

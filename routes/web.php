@@ -17,8 +17,14 @@ use App\Http\Controllers\{
     CategoryController as LandingCategoryController, VehicleController as LandingVehicleController
 };
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\InvoiceController;
 
 Route::get('/', LandingController::class)->name('landing');
+Route::get('/admin/report', [ReportController::class, 'index'])->name('admin.report');
+Route::get('/transaction/vehicle/create', [TransactionController::class, 'createVehicle'])->name('transaction.vehicle.create');
+Route::post('/transaction/vehicle/store', [TransactionController::class, 'storeVehicle'])->name('transaction.vehicle.store');
+Route::get('/invoice/print/{id}', [InvoiceController::class, 'print'])->name('invoice.print');
+
 
 Route::controller(LandingCategoryController::class)->as('category.')->group(function(){
     Route::get('/category', 'index')->name('index');
@@ -109,3 +115,29 @@ Route::group(['prefix' => 'customer', 'as' => 'customer.', 'middleware' => ['aut
         Route::put('/setting/update/{user}', 'update')->name('setting.update');
     });
 });
+
+Route::middleware(['auth', 'role:Admin|Super Admin'])->prefix('admin')->group(function () {
+    Route::get('/manual-transaction', [TransactionController::class, 'createManual'])->name('admin.manual.transaction');
+    Route::post('/manual-transaction', [TransactionController::class, 'storeManual'])->name('admin.manual.transaction.store');
+});
+
+Route::get('/invoice/print/{id}', [InvoiceController::class, 'print'])->name('invoice.print');
+
+use App\Http\Controllers\Admin\VehicleTransactionController;
+
+Route::prefix('transaction/vehicle')->group(function () {
+    Route::get('/create', [VehicleTransactionController::class, 'create'])->name('vehicle_transactions.create');
+    Route::post('/store', [VehicleTransactionController::class, 'store'])->name('vehicle_transactions.store');
+});
+
+Route::get('/admin/transaction/vehicle', [TransactionController::class, 'vehicle'])->name('admin.transaction.vehicle');
+Route::get('/admin/user/create', [UserController::class, 'create'])->name('admin.user.create');
+Route::post('/admin/user/store', [UserController::class, 'store'])->name('admin.user.store');
+
+use App\Http\Controllers\ExpenseController;
+
+Route::get('/admin/expanses', [ExpenseController::class, 'index'])->name('expenses.index');
+Route::post('/admin/expanses', [ExpenseController::class, 'store'])->name('expenses.store');
+
+
+

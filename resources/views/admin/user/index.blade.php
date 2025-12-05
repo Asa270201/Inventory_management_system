@@ -4,6 +4,13 @@
     <x-container>
         <div class="col-12">
             <x-card title="DAFTAR USER" class="card-body p-0">
+                @can('create-user')
+                    <div class="mb-3 text-end">
+                        <a href="{{ route('admin.user.create') }}" class="btn btn-primary">
+                            <i class="fas fa-user-plus"></i> Tambah Customer
+                        </a>
+                    </div>
+                @endcan
                 <x-table>
                     <thead>
                         <tr>

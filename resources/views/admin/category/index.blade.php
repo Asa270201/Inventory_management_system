@@ -27,7 +27,7 @@
                                 <td>{{ $category->name }}</td>
                                 <td>
                                     @can('update-category')
-                                        <x-button-modal :id="$category->id" title="" icon="edit" style=""
+                                        <x-button-modal :id="$category->id" title="Edit" icon="edit" style=""
                                             class="btn btn-info btn-sm" />
                                         <x-modal :id="$category->id" title="Edit - {{ $category->name }}">
                                             <form action="{{ route('admin.category.update', $category->id) }}" method="POST"
@@ -43,7 +43,7 @@
                                         </x-modal>
                                     @endcan
                                     @can('delete-category')
-                                        <x-button-delete :id="$category->id" :url="route('admin.category.destroy', $category->id)" title=""
+                                        <x-button-delete :id="$category->id" :url="route('admin.category.destroy', $category->id)" title="Hapus"
                                             class="btn btn-danger btn-sm" />
                                     @endcan
                                 </td>

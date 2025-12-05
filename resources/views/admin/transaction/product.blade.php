@@ -12,6 +12,8 @@
                             <th>Nama Produk</th>
                             <th>Kategori Produk</th>
                             <th>Kuantitas</th>
+                            <th>Total Harga</th>
+                            <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -33,6 +35,16 @@
                                     @foreach ($transaction->details as $details)
                                         <li>{{ $details->quantity }} - {{ $details->product->unit }}</li>
                                     @endforeach
+                                </td>
+                                <td>
+                                    @foreach ($transaction->details as $details)
+                                        <li>{{ $details->total_price }}</li>
+                                    @endforeach
+                                </td>
+                                <td>
+                                    <a href="{{ route('invoice.print', $transaction->id) }}" class="btn btn-sm btn-primary" target="_blank">
+                                        Cetak Invoice
+                                    </a>
                                 </td>
                             </tr>
                         @endforeach

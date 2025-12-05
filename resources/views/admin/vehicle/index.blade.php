@@ -71,8 +71,15 @@
                             :value="old('name')" />
                         <x-input name="merk" type="text" title="Merek Kendaraan" placeholder="Merek Kendaraan"
                             :value="old('merk')" />
-                        <x-input name="type" type="text" title="Tipe Kendaraan" placeholder="Tipe Kendaraan"
-                            :value="old('type')" />
+                        <div class="form-group">
+                            <label for="type">Tipe Kendaraan</label>
+                                <select name="type" class="form-control" required>
+                                    <option value="Pickup">Pickup</option>
+                                    <option value="Truk">Truk</option>
+                                    <option value="Mobil Box">Mobil Box</option>
+                                    <option value="Mobil">Mobil</option>
+                                </select>
+                        </div>
                         <x-input name="license_plat" type="text" title="No. Polisi Kendaraan"
                             placeholder="No.Polisi Kendaraan" :value="old('license_plat')" />
                         <x-toggle name="condition" title="Kondisi Kendaraan" subTitle="Service" value="1" />

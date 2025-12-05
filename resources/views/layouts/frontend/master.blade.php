@@ -45,6 +45,7 @@
         <div class="content">
             <!-- Content -->
             @yield('content')
+            
 
             <!-- Footer -->
             @include('layouts.frontend._footer')

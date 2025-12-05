@@ -153,6 +153,11 @@
                                             placeholder="" name="grand_total"
                                             value="{{ $cart->count() }} ({{ $grandQuantity }} Qty)" readonly />
                                     </div>
+                                    <div class="mb-3">
+                                        <label for="total_price" class="form-label">Total Harga Jual</label>
+                                        <input type="text" class="form-control" value="Rp{{ number_format($totalHargaJual, 0, ',', '.') }}" readonly>
+                                    </div>
+
                                 </div>
                             </div>
                         </div>

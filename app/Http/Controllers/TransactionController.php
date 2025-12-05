@@ -31,12 +31,17 @@ class TransactionController extends Controller
         $carts = Cart::where('user_id', Auth::id())->get();
 
         foreach($carts as $cart){
-            TransactionDetail::create([
-                'transaction_id' => $transaction->id,
-                'product_id' => $cart->product_id,
-                'quantity' => $cart->quantity,
-            ]);
-            Product::whereId($cart->product_id)->decrement('quantity', $cart->quantity);
+        $product = Product::find($cart->product_id);
+        $total = $product->selling_price * $cart->quantity;
+
+        TransactionDetail::create([
+            'transaction_id' => $transaction->id,
+            'product_id' => $cart->product_id,
+            'quantity' => $cart->quantity,
+            'total_price' => $total,
+        ]);
+
+        Product::whereId($cart->product_id)->decrement('quantity', $cart->quantity);
         }
 
         Cart::where('user_id', Auth::id())->delete();

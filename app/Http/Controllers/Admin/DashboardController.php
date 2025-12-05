@@ -45,7 +45,7 @@ class DashboardController extends Controller
         $bestProduct = DB::table('transaction_details')
                         ->addSelect(DB::raw('products.name as name, sum(transaction_details.quantity) as total'))
                         ->join('products', 'products.id', 'transaction_details.product_id')
-                        ->groupBy('transaction_details.product_id')
+                        ->groupBy('transaction_details.product_id', 'products.name')
                         ->orderBy('total', 'DESC')
                         ->limit(5)->get();
 

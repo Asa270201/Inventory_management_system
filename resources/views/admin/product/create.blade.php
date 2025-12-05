@@ -10,6 +10,8 @@
                         <x-input name="name" type="text" title="Nama Produk" placeholder="Nama Produk" :value="old('name')" />
                         <x-input name="unit" type="text" title="Satuan Produk" placeholder="Satuan Produk"
                             :value="old('unit')" />
+                        <x-input name="purchase_price" type="number" title="Harga Beli" placeholder="Harga Beli" :value="old('purchase_price')" step="0.01" />
+                        <x-input name="selling_price" type="number" title="Harga Jual" placeholder="Harga Jual" :value="old('selling_price')" step="0.01" />
                         <x-select title="Supplier Produk" name="supplier_id">
                             <option value>Silahkan Pilih</option>
                             @foreach ($suppliers as $supplier)

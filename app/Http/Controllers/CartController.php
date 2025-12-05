@@ -8,21 +8,35 @@ use App\Models\Product;
 use App\Enums\OrderStatus;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 
 class CartController extends Controller
 {
     public function index()
     {
         $carts = Cart::where('user_id', Auth::id())->latest()->get();
-
         $grandQuantity = $carts->sum('quantity');
 
-        if($carts->count() > 0){
-            return view('landing.cart.index', compact('carts', 'grandQuantity'));
+        $totalHargaJual = 0;
+        foreach ($carts as $cart) {
+            $product = Product::find($cart->product_id);
+            if ($product) {
+                $totalHargaJual += $product->selling_price * $cart->quantity;
+            }
+        }
+
+        if ($carts->count() > 0) {
+            return view('landing.cart.index', compact('carts', 'grandQuantity', 'totalHargaJual'));
         }
         return back()->with('toast_error', 'Keranjang anda kosong');
     }
 
+    public function cart()
+    {
+        $users = User::all(); // Ambil semua user
+        return view('landing.cart', compact('users'));
+    }
+    
     public function store(Product $product)
     {
         $user = Auth::user();

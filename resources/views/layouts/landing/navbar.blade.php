@@ -1,25 +1,27 @@
 <!-- Navbar -->
-<div class="w-full border-b border-dashed border-sky-800 bg-sky-900 p-5">
+<div class="w-full border-b border-dashed border-white-800 bg-white-900 p-3 sticky top-0 z-50 transition-all duration-300 ease-in-out animate-slideDown">
     <div class="container mx-auto">
         <div class="flex justify-between items-center">
-            <a href="/" class="flex items-center gap-2">
-                <img src="{{ asset('warehouse.png') }}" class="w-7 h-7 object-center object-cover" />
-                <h1 class="text-white text-2xl font-semibold">Gudangku</h1>
+            <!-- Logo -->
+            <a href="/" class="flex items-center gap-3">
+                <img style="width: 100px; height: 100px;" src="{{ asset('Logo ASA Putih.png') }}" class="object-center object-cover" />
             </a>
+
+            <!-- Menu -->
             <div class="flex gap-4 text-white">
                 @guest
-                    <a href="{{ route('login') }}" class="border px-2 py-1 rounded-lg font-medium hover:bg-sky-900">
+                    <a href="{{ route('login') }}" class="btn btn-dark border px-2 py-1 rounded-lg font-medium hover:bg-sky-900">
                         Masuk
                     </a>
-                    <a href="{{ route('register') }}" class="border px-2 py-1 rounded-lg font-medium hover:bg-sky-900">
+                    <a href="{{ route('register') }}" class="btn btn-dark border px-2 py-1 rounded-lg font-medium hover:bg-sky-900">
                         Daftar
                     </a>
                 @endguest
+
                 @auth
                     <div class="hidden md:flex items-center gap-4">
                         <a href="{{ route('cart.index') }}" class="relative group">
-                            <div
-                                class="text-sm absolute -right-2 -top-3 bg-rose-500 rounded-full px-2 group-hover:bg-rose-700">
+                            <div class="text-sm absolute -right-2 -top-3 bg-rose-500 rounded-full px-2 group-hover:bg-rose-700">
                                 {{ Auth::user()->carts()->count() }}
                             </div>
                             <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-basket"
@@ -31,11 +33,17 @@
                                 <circle cx="12" cy="15" r="2"></circle>
                             </svg>
                         </a>
+
                         @role('Admin|Super Admin')
-                            <a href="{{ route('admin.dashboard') }}" class="rounded-lg border px-2 py-1">Dashboard</a>
+                            <a href="{{ route('admin.dashboard') }}" class="rounded-lg border px-2 py-1 hover:bg-sky-900">
+                                Dashboard
+                            </a>
                         @endrole
+
                         @role('Customer')
-                            <a href="{{ route('customer.dashboard') }}" class="rounded-lg border px-2 py-1">Dashboard</a>
+                            <a href="{{ route('customer.dashboard') }}" class="rounded-lg border px-2 py-1 hover:bg-sky-900">
+                                Dashboard
+                            </a>
                         @endrole
                     </div>
                 @endauth

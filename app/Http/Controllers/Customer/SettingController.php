@@ -23,21 +23,23 @@ class SettingController extends Controller
         $image = $this->uploadImage($request, $path = 'public/avatars/', $name = 'avatar');
 
         $request->validate([
-            'name' => 'required',
+            'name' => 'required|string|max:255',
             'email' => 'required|email',
-            'department' => 'required',
+            'store_address' => 'nullable|string|max:255',
         ]);
+
 
         $password = !empty($request->password) ? bcrypt($request->password) : $user->password;
 
         $user->update([
             'name' => $request->name,
-            'department' => $request->department,
             'email' => $request->email,
+            'store_address' => $request->store_address,
+            'department' => $user->department ?? 'Umum',
             'password' => $password,
         ]);
 
-        if($request->file($name)){
+        if ($request->file($name)) {
             $this->updateImage(
                 $path = 'public/avatars/', $name = 'avatar', $data = $user, $url = $image->hashName()
             );
@@ -45,4 +47,5 @@ class SettingController extends Controller
 
         return back()->with('toast_success', 'Akun Berhasil Diubah');
     }
+
 }
