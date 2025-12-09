@@ -34,3 +34,4 @@ Dengan aplikasi ini, pengguna dapat memantau stok, transaksi, serta laporan inve
 - `README.md` → Dokumentasi proyek
 
 ---
+**FRONT END BELOM KELAR GESS**
